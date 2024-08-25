@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Pterodactyl</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&amp;display=swap" rel="stylesheet">
+  <style type="text/css">
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #1a1a1a;
+      margin: 0;
+      color: #fff;
+    }
+
+    .login-container {
+      text-align: center;
+      max-width: 400px;
+      padding: 20px;
+      background-color: #2a2a2a;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .login-title {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background-color: #3a3a3a;
+      color: #fff;
+    }
+
+    .login-input::placeholder {
+      color: #bbb;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgb(132, 94, 194);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      type: button;
+    }
+
+    .login-button:hover {
+      background-color: rgb(111, 75, 164);
+    }
+
+    .scare {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: 1;
+    }
+
+    video#video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <p class="login-title">Login to Pterodactyl</p>
+    <input type="text" class="login-input" placeholder="Username" id="text">
+    <input type="password" class="login-input" placeholder="Password" id="password">
+    <button class="login-button" id="login-button">Login</button>
+  </div>
+  <div class="scare">
+    <video id="video" src="https://l1ghtsh0t.github.io/media/video.mp4" loop></video>
+  </div>
+  <script type="text/javascript">
+    const video = document.getElementById("video");
+    const scare = document.querySelector(".scare");
+    const loginButton = document.getElementById("login-button");
+
+    loginButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      // Di sini Anda biasanya akan memvalidasi kredensial login
+      // dan mengirimkannya ke server Anda.
+      // Untuk sekarang, kita hanya akan memutar video.
+      scare.style.display = "block";
+      video.play();
+      videoClick();
+    });
+
+    function videoClick() {
+      const {documentElement} = document;
+      if (documentElement.requestFullscreen) {
+        documentElement.requestFullscreen();
+      } else if (documentElement.mozRequestFullScreen) {
+        documentElement.mozRequestFullScreen();
+      } else if (documentElement.webkitRequestFullscreen) {
+        documentElement.webkitRequestFullscreen();
+      } else if (documentElement.msRequestFullscreen) {
+        documentElement.msRequestFullscreen();
+      }
+    }
+
+    video.addEventListener("click", videoClick);
+  </script>
+</body>
+
+</html>
