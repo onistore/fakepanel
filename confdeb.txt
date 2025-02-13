@@ -81,7 +81,7 @@ zone "30.168.192.in-addr.arpa" {
 };
 =============================
 
-#nano named.conf
+#nano named.conf.option
 
 =============================
 forwarders {
@@ -140,5 +140,38 @@ nameserver 192.168.30.1
 >www
 >mail
 >ftp
+>exit
+
+#apt install apache2
+#mkdir -p /var/www/namasendiri.sch.id
+#chmod -R 755 /var/www/namasendiri.sch.id
+#nano /var/www/namasendiri.sch.id/index.html
+
+=============================
+<html>
+<head>
+	<title>Welcome</title>
+</head>
+<body>
+	<h1>INI HALAMAN WEBSITE</h1>
+</body>
+</html>
+=============================
+
+#cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/namasendiri.sch.id.conf
+#nano /etc/apache2/sites-available/namasendiri.sch.id.conf
+
+=============================
+ServerAdmin emailmu@namasendiri.sch.id
+DocumentRoot /var/www/namasendiri.sch.id
+ServerName namasendiri.sch.id
+ServerAlias www.namasendiri.sch.id
+=============================
+
+#a2ensite namasendiri.sch.id.conf
+#a2dissite 000-default.conf
+#service apache2 restart
+
+
 
 
