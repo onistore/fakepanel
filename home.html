@@ -27,6 +27,7 @@ a {
 <h1 align="center">PILIHLAH MAU BACA BUKU APA</h1>
 <h3 align="center">DAFTAR ISI</h3>
 <br><br><br>
+	<button onclick="logout()">Logout</button>
 <button class="btn-cta"><a href="Hacker dan Linux.pdf" align="center"><h1>HACKER DAN LINUX</h1></a></button><br><br>
 <button class="btn-cta"><a href="bukuhackerNubihaxor-1-175.pdf" align="center"><h1>BUKU HACKER NUBIHAXOR 1-175</h1></a></button><br><br>
 <button class="btn-cta"><a href="bukuhackerNubihaxor-174-345.pdf" align="center"><h1>BUKU HACKER NUBIHAXOR 174-345</h1></a></button><br><br>
@@ -34,9 +35,15 @@ a {
 <button class="btn-cta"><a href="keamanan jaringan - mikrotik hack user password login.pdf" align="center"><h1>MIKROTIK HACK USER PASSWORD</h1></a></button><br><br>
 <button class="btn-cta"><a href="confdeb.txt" align="center"><h1>CONFIGURASI DEBIAN</h1></a></button>
 
-
 <script>
+  // Cek apakah sudah login
   if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "index.html";
+  }
+
+  // Fungsi logout
+  function logout() {
+    localStorage.removeItem("loggedIn");
     window.location.href = "index.html";
   }
 </script>
