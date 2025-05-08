@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      padding: 50px;
+      text-align: center;
+    }
+    #login-box, #content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 80%;
+    }
+    button {
+      padding: 10px 20px;
+    }
+    #content {
+      display: none;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false">
+
+  <div id="login-box">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+    <p id="error" style="color: red;"></p>
+  </div>
+
+  <div id="content">
+    <h2>Welcome to the Website</h2>
+    <p>This is the protected content only visible after login.</p>
+  </div>
+
+  <script>
+    // Login logic
+    const correctUsername = "admin123";
+    const correctPassword = "123";
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("error");
+
+      if (username === correctUsername && password === correctPassword) {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      } else {
+        error.textContent = "Username atau password salah.";
+      }
+    }
+
+    // Disable right-click
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Disable DevTools shortcut keys
+    document.onkeydown = function(e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey && e.key.toLowerCase() === 'u')
+      ) {
+        return false;
+      }
+    };
+
+    // Anti-debugger trick
+    setInterval(() => {
+      const start = performance.now();
+      debugger;
+      const end = performance.now();
+      if (end - start > 100) {
+        window.location.href = "about:blank";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
