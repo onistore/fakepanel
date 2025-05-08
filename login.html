@@ -1,73 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Login Page</title>
+  <title>Login</title>
   <style>
     body {
       font-family: sans-serif;
-      background: #f4f4f4;
-      padding: 50px;
+      background-color: #f0f0f0;
       text-align: center;
+      padding-top: 100px;
     }
-    #login-box, #content {
-      background: white;
+    #login-box {
+      background-color: white;
       padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 400px;
-      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      display: inline-block;
     }
     input {
       padding: 10px;
-      margin: 10px 0;
+      margin: 10px;
       width: 80%;
     }
     button {
       padding: 10px 20px;
-    }
-    #content {
-      display: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body oncontextmenu="return false">
 
   <div id="login-box">
-    <h2>Login</h2>
+    <h2>Silakan Login</h2>
     <input type="text" id="username" placeholder="Username"><br>
     <input type="password" id="password" placeholder="Password"><br>
     <button onclick="login()">Login</button>
-    <p id="error" style="color: red;"></p>
-  </div>
-
-  <div id="content">
-    <h2>Welcome to the Website</h2>
-    <p>This is the protected content only visible after login.</p>
+    <p id="error" style="color:red;"></p>
   </div>
 
   <script>
-    // Login logic
-    const correctUsername = "admin123";
-    const correctPassword = "123";
+    // Redirect kalau sudah login
+    if (localStorage.getItem("loggedIn") === "true") {
+      window.location.href = "home.html";
+    }
 
     function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
       const error = document.getElementById("error");
 
-      if (username === correctUsername && password === correctPassword) {
-        document.getElementById("login-box").style.display = "none";
-        document.getElementById("content").style.display = "block";
+      if (user === "admin" && pass === "123") {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "home.html";
       } else {
-        error.textContent = "Username atau password salah.";
+        error.textContent = "Username atau password salah!";
       }
     }
 
-    // Disable right-click
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    // Disable DevTools shortcut keys
+    // Blok klik kanan dan inspect
+    document.addEventListener('contextmenu', e => e.preventDefault());
     document.onkeydown = function(e) {
       if (
         e.key === "F12" ||
@@ -77,16 +68,6 @@
         return false;
       }
     };
-
-    // Anti-debugger trick
-    setInterval(() => {
-      const start = performance.now();
-      debugger;
-      const end = performance.now();
-      if (end - start > 100) {
-        window.location.href = "about:blank";
-      }
-    }, 1000);
   </script>
 
 </body>
